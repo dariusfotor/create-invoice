@@ -7,6 +7,8 @@ import { useParams } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Paper from '@mui/material/Paper';
 import ProductTable from './product-table';
+import Button from '@mui/material/Button';
+import PrintIcon from '@mui/icons-material/Print';
 
 const InvoiceTemplate = () => {
   const { handleOpenSnackBar } = React.useContext(SnackbarContext);
@@ -26,8 +28,15 @@ const InvoiceTemplate = () => {
     getInvoice();
   }, [getInvoice]);
 
+  const print = () => {
+    window.print();
+  };
+
   return (
     <Container>
+      <Button variant="outlined" className="print-button" onClick={print}>
+        <PrintIcon />
+      </Button>
       {invoice ? (
         <Box
           sx={{
@@ -38,11 +47,11 @@ const InvoiceTemplate = () => {
               m: 1,
               width: 800,
               height: '100%',
-              padding: '35px',
+              padding: '25px',
             },
           }}
         >
-          <Paper elevation={5}>
+          <NonProntablePaper elevation={5}>
             <div className="title">
               <h2>PVM Sąskaita faktūra</h2>
               <h4>Serijos nr. {invoice?.id}</h4>
@@ -64,7 +73,7 @@ const InvoiceTemplate = () => {
             <div className="product-table">
               <ProductTable invoice={invoice} />
             </div>
-          </Paper>
+          </NonProntablePaper>
         </Box>
       ) : (
         <div style={{ textAlign: 'center' }}>Sąskaita nerasta</div>
@@ -74,6 +83,14 @@ const InvoiceTemplate = () => {
 };
 
 export default InvoiceTemplate;
+
+const NonProntablePaper = styled(Paper)`
+  @media print {
+    & {
+      box-shadow: none !important;
+    }
+  }
+`;
 
 const Container = styled.div`
   .title {
@@ -103,5 +120,11 @@ const Container = styled.div`
   }
   .product-table {
     margin-top: 30px;
+  }
+  .print-button {
+    margin: 20px;
+    @media print {
+      display: none;
+    }
   }
 `;

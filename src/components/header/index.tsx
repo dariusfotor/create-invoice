@@ -49,4 +49,7 @@ const Container = styled.div`
   width: 100%;
   height: 80px;
   background-color: #40495a;
+  @media print {
+    display: none;
+  }
 `;

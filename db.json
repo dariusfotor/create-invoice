@@ -359,6 +359,205 @@
       "tax": 55,
       "notTouched": false,
       "createdAt": "2022/03/21"
+    },
+    {
+      "id": 1647893761601,
+      "client": "IBM",
+      "clientCountry": {
+        "name": "Angola",
+        "topLevelDomain": [
+          ".ao"
+        ],
+        "alpha2Code": "AO",
+        "alpha3Code": "AGO",
+        "callingCodes": [
+          "244"
+        ],
+        "capital": "Luanda",
+        "altSpellings": [
+          "AO",
+          "República de Angola",
+          "ʁɛpublika de an'ɡɔla"
+        ],
+        "subregion": "Middle Africa",
+        "region": "Africa",
+        "population": 32866268,
+        "latlng": [
+          -12.5,
+          18.5
+        ],
+        "demonym": "Angolan",
+        "area": 1246700,
+        "gini": 51.3,
+        "timezones": [
+          "UTC+01:00"
+        ],
+        "borders": [
+          "COG",
+          "COD",
+          "ZMB",
+          "NAM"
+        ],
+        "nativeName": "Angola",
+        "numericCode": "024",
+        "flags": {
+          "svg": "https://flagcdn.com/ao.svg",
+          "png": "https://flagcdn.com/w320/ao.png"
+        },
+        "currencies": [
+          {
+            "code": "AOA",
+            "name": "Angolan kwanza",
+            "symbol": "Kz"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "pt",
+            "iso639_2": "por",
+            "name": "Portuguese",
+            "nativeName": "Português"
+          }
+        ],
+        "translations": {
+          "br": "Angola",
+          "pt": "Angola",
+          "nl": "Angola",
+          "hr": "Angola",
+          "fa": "آنگولا",
+          "de": "Angola",
+          "es": "Angola",
+          "fr": "Angola",
+          "ja": "アンゴラ",
+          "it": "Angola",
+          "hu": "Angola"
+        },
+        "flag": "https://flagcdn.com/ao.svg",
+        "regionalBlocs": [
+          {
+            "acronym": "AU",
+            "name": "African Union",
+            "otherNames": [
+              "الاتحاد الأفريقي",
+              "Union africaine",
+              "União Africana",
+              "Unión Africana",
+              "Umoja wa Afrika"
+            ]
+          }
+        ],
+        "cioc": "ANG",
+        "independent": true
+      },
+      "clientPerson": "physical",
+      "isClientVatPayer": true,
+      "supplier": "Microsoft",
+      "supplierCountry": {
+        "name": "Argentina",
+        "topLevelDomain": [
+          ".ar"
+        ],
+        "alpha2Code": "AR",
+        "alpha3Code": "ARG",
+        "callingCodes": [
+          "54"
+        ],
+        "capital": "Buenos Aires",
+        "altSpellings": [
+          "AR",
+          "Argentine Republic",
+          "República Argentina"
+        ],
+        "subregion": "South America",
+        "region": "Americas",
+        "population": 45376763,
+        "latlng": [
+          -34,
+          -64
+        ],
+        "demonym": "Argentinean",
+        "area": 2780400,
+        "gini": 42.9,
+        "timezones": [
+          "UTC-03:00"
+        ],
+        "borders": [
+          "BOL",
+          "BRA",
+          "CHL",
+          "PRY",
+          "URY"
+        ],
+        "nativeName": "Argentina",
+        "numericCode": "032",
+        "flags": {
+          "svg": "https://flagcdn.com/ar.svg",
+          "png": "https://flagcdn.com/w320/ar.png"
+        },
+        "currencies": [
+          {
+            "code": "ARS",
+            "name": "Argentine peso",
+            "symbol": "$"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "es",
+            "iso639_2": "spa",
+            "name": "Spanish",
+            "nativeName": "Español"
+          },
+          {
+            "iso639_1": "gn",
+            "iso639_2": "grn",
+            "name": "Guaraní",
+            "nativeName": "Avañe'ẽ"
+          }
+        ],
+        "translations": {
+          "br": "Argentina",
+          "pt": "Argentina",
+          "nl": "Argentinië",
+          "hr": "Argentina",
+          "fa": "آرژانتین",
+          "de": "Argentinien",
+          "es": "Argentina",
+          "fr": "Argentine",
+          "ja": "アルゼンチン",
+          "it": "Argentina",
+          "hu": "Argentína"
+        },
+        "flag": "https://flagcdn.com/ar.svg",
+        "regionalBlocs": [
+          {
+            "acronym": "USAN",
+            "name": "Union of South American Nations",
+            "otherAcronyms": [
+              "UNASUR",
+              "UNASUL",
+              "UZAN"
+            ],
+            "otherNames": [
+              "Unión de Naciones Suramericanas",
+              "União de Nações Sul-Americanas",
+              "Unie van Zuid-Amerikaanse Naties",
+              "South American Union"
+            ]
+          }
+        ],
+        "cioc": "ARG",
+        "independent": true
+      },
+      "isSupplierVatPayer": false,
+      "product": "Dezutes",
+      "quantity": 5,
+      "pricePerQuantity": "4",
+      "vat": 0,
+      "totalSum": 20,
+      "tax": 20,
+      "notTouched": false,
+      "createdAt": "2022/03/21"
     }
   ]
 }

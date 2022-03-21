@@ -1,5 +1,4 @@
 import { useField } from 'formik';
-import styled from 'styled-components';
 import TextField from '@mui/material/TextField';
 
 interface Props {
@@ -15,26 +14,13 @@ interface Props {
 const InputFormik = (props: Props) => {
   const [field, meta] = useField(props);
   return (
-    <div>
-      <TextField
-        style={{ width: '150px' }}
-        inputProps={{ readOnly: props.readOnly }}
-        {...field}
-        {...props}
-      />
-      {meta.error && meta.touched && (
-        <div
-          style={{
-            position: 'absolute',
-            color: 'red',
-            fontSize: '15px',
-            textAlign: 'center',
-          }}
-        >
-          {meta.error}
-        </div>
-      )}
-    </div>
+    <TextField
+      inputProps={{ readOnly: props.readOnly }}
+      {...field}
+      {...props}
+      error={Boolean(meta.error && meta.touched)}
+      helperText={meta.error && meta.touched ? meta.error : ''}
+    />
   );
 };
 

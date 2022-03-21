@@ -11,32 +11,20 @@ interface Props {
 const SelectField = (props: Props) => {
   const [field, meta] = useField(props);
   return (
-    <div>
-      <TextField
-        style={{ width: '150px' }}
-        label={props.label}
-        select
-        {...field}
-      >
-        {props.data.map((option) => (
-          <MenuItem key={option.label} value={option.value}>
-            {option.label}
-          </MenuItem>
-        ))}
-      </TextField>
-      {meta.error && meta.touched && (
-        <div
-          style={{
-            position: 'absolute',
-            color: 'red',
-            fontSize: '15px',
-            textAlign: 'center',
-          }}
-        >
-          {meta.error}
-        </div>
-      )}
-    </div>
+    <TextField
+      style={{ width: '150px' }}
+      label={props.label}
+      select
+      error={Boolean(meta.error && meta.touched)}
+      helperText={meta.error && meta.touched ? meta.error : ''}
+      {...field}
+    >
+      {props.data.map((option) => (
+        <MenuItem key={option.label} value={option.value}>
+          {option.label}
+        </MenuItem>
+      ))}
+    </TextField>
   );
 };
 

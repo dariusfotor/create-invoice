@@ -1,7 +1,6 @@
 import { useContext, useState, useEffect, useCallback } from 'react';
-import { Formik, Form } from 'formik';
+import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import styled from 'styled-components';
 import { useNavigate } from 'react-router-dom';
 import { ROUTES } from '../../routes';
 import {
@@ -23,7 +22,7 @@ import { saveInvoiceApi } from '../server/controller';
 import FormLabel from '@mui/material/FormLabel';
 import { calculateTax } from '../utils/invoice-utils';
 import Divider from '@mui/material/Divider';
-
+import { Box, Grid } from '@mui/material';
 const invoiceFormSchema = Yup.object().shape({
   client: Yup.string().required('Įrašykite klientą'),
   clientCountry: Yup.object().required('Pasirinkite valstybę'),
@@ -102,122 +101,167 @@ const InvoiceForm = () => {
   };
 
   return (
-    <Container>
-      <Formik
-        initialValues={{
-          client: '',
-          clientPerson: ClientPerson.PHYSICAL,
-          isClientVatPayer: false,
-          clientCountry: '',
-          supplier: '',
-          isSupplierVatPayer: false,
-          supplierCountry: '',
-          product: '',
-          quantity: 0,
-          pricePerQuantity: 0,
-          tax: 0,
-          vat: 0,
-          totalSum: 0,
-          notTouched: true,
-          createdAt: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
-        }}
-        validationSchema={invoiceFormSchema}
-        onSubmit={onSaveInv}
-      >
-        {({ values, setFieldValue }) => (
-          <Form className="invoice-form">
+    <Formik
+      initialValues={{
+        client: '',
+        clientPerson: ClientPerson.PHYSICAL,
+        isClientVatPayer: false,
+        clientCountry: '',
+        supplier: '',
+        isSupplierVatPayer: false,
+        supplierCountry: '',
+        product: '',
+        quantity: 0,
+        pricePerQuantity: 0,
+        tax: 0,
+        vat: 0,
+        totalSum: 0,
+        notTouched: true,
+        createdAt: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
+      }}
+      validationSchema={invoiceFormSchema}
+      onSubmit={onSaveInv}
+    >
+      {({ values, setFieldValue }) => (
+        <Form>
+          <Box
+            component="div"
+            sx={{
+              '& .MuiFormControl-root': { m: 1, width: '25ch' },
+            }}
+          >
             <h2 className="title">Sąskaita faktūra klientui</h2>
-            <h3>Klientas</h3>
+            <Grid container spacing={4}>
+              <Grid item xs={12} md={6}>
+                <h3>Klientas</h3>
+                <Divider />
+                <div>
+                  <InputFormik
+                    id={'client'}
+                    name={'client'}
+                    type={'text'}
+                    placeholder={'Klientas'}
+                    label={'Klientas'}
+                  />
+                  <div className="select">
+                    <SelectField
+                      label={'Valstybės'}
+                      data={countries}
+                      name={'clientCountry'}
+                    />
+                  </div>
+                  <div className="radio-buttons-group">
+                    <FormControl>
+                      <FormLabel>PVM mokėtojas</FormLabel>
+                      <RadioGroup
+                        row
+                        name="isClientVatPayer"
+                        value={values.isClientVatPayer}
+                        onChange={(event) => {
+                          setFieldValue(
+                            'isClientVatPayer',
+                            event.target.value === 'true' ? true : false
+                          );
+                        }}
+                      >
+                        <FormControlLabel
+                          value={true}
+                          control={<Radio />}
+                          label="Taip"
+                        />
+                        <FormControlLabel
+                          value={false}
+                          control={<Radio />}
+                          label="Ne"
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                  <div className="client-radio-buttons">
+                    <FormControl>
+                      <FormLabel>Klientas kaip asmuo:</FormLabel>
+                      <RadioGroup
+                        row
+                        name="clientPerson"
+                        value={values.clientPerson}
+                        onChange={(event) => {
+                          setFieldValue('clientPerson', event.target.value);
+                        }}
+                      >
+                        <FormControlLabel
+                          value={ClientPerson.JURIDICAL}
+                          control={<Radio />}
+                          label="Juridinis"
+                        />
+                        <FormControlLabel
+                          value={ClientPerson.PHYSICAL}
+                          control={<Radio />}
+                          label="Fizinis"
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <h3>Tiekėjas</h3>
+                <Divider />
+                <div>
+                  <InputFormik
+                    id={'supplier'}
+                    name={'supplier'}
+                    type={'text'}
+                    placeholder={'Tiekėjas'}
+                    label={'Tiekėjas'}
+                  />
+                  <div className="select">
+                    <SelectField
+                      label={'Valstybės'}
+                      data={countries}
+                      name={'supplierCountry'}
+                    />
+                  </div>
+
+                  <div>
+                    <FormControl>
+                      <FormLabel>PVM mokėtojas</FormLabel>
+                      <RadioGroup
+                        row
+                        name="isSupplierVatPayer"
+                        value={values.isSupplierVatPayer}
+                        onChange={(event) => {
+                          setFieldValue(
+                            'isSupplierVatPayer',
+                            event.target.value === 'true' ? true : false
+                          );
+                        }}
+                      >
+                        <FormControlLabel
+                          value={true}
+                          control={<Radio />}
+                          label="Taip"
+                        />
+                        <FormControlLabel
+                          value={false}
+                          control={<Radio />}
+                          label="Ne"
+                        />
+                      </RadioGroup>
+                    </FormControl>
+                  </div>
+                </div>
+              </Grid>
+            </Grid>
+            <h3>Produktas</h3>
             <Divider />
-            <div className="client-inputs">
-              <InputFormik
-                id={'client'}
-                name={'client'}
-                type={'text'}
-                placeholder={'Klientas'}
-              />
-              <div className="select">
-                <SelectField
-                  label={'Valstybės'}
-                  data={countries}
-                  name={'clientCountry'}
-                />
-              </div>
-              <div className="radio-buttons-group">
-                <FormControl>
-                  <FormLabel>PVM mokėtojas</FormLabel>
-                  <RadioGroup
-                    name="isClientVatPayer"
-                    value={values.isClientVatPayer}
-                    onChange={(event) => {
-                      setFieldValue(
-                        'isClientVatPayer',
-                        event.target.value === 'true' ? true : false
-                      );
-                    }}
-                  >
-                    <FormControlLabel
-                      value={true}
-                      control={<Radio />}
-                      label="Taip"
-                    />
-                    <FormControlLabel
-                      value={false}
-                      control={<Radio />}
-                      label="Ne"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </div>
-              <div className="client-radio-buttons">
-                <FormControl>
-                  <FormLabel>Klientas kaip asmuo:</FormLabel>
-                  <RadioGroup
-                    name="clientPerson"
-                    value={values.clientPerson}
-                    onChange={(event) => {
-                      setFieldValue('clientPerson', event.target.value);
-                    }}
-                  >
-                    <FormControlLabel
-                      value={ClientPerson.JURIDICAL}
-                      control={<Radio />}
-                      label="Juridinis"
-                    />
-                    <FormControlLabel
-                      value={ClientPerson.PHYSICAL}
-                      control={<Radio />}
-                      label="Fizinis"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </div>
-            </div>
-            <h3>Tiekėjas</h3>
-            <Divider />
-            <div className="supplier-inputs">
-              <InputFormik
-                id={'supplier'}
-                name={'supplier'}
-                type={'text'}
-                placeholder={'Tiekėjas'}
-              />
-              <div className="select">
-                <SelectField
-                  label={'Valstybės'}
-                  data={countries}
-                  name={'supplierCountry'}
-                />
-              </div>
-              <div className="product">
+            <Grid container spacing={4} justifyContent="space-between">
+              <Grid item>
                 <InputFormik
                   id={'product'}
                   name={'product'}
                   type={'text'}
-                  placeholder={'Produktas'}
+                  label={'Produktas'}
                 />
-              </div>
-              <div className="quantity">
                 <InputFormik
                   id={'quantity'}
                   name={'quantity'}
@@ -225,8 +269,6 @@ const InvoiceForm = () => {
                   placeholder={'Kiekis'}
                   label={'Kiekis'}
                 />
-              </div>
-              <div className="pricePerQuantity">
                 <InputFormik
                   id={'pricePerQuantity'}
                   name={'pricePerQuantity'}
@@ -241,112 +283,36 @@ const InvoiceForm = () => {
                     );
                   }}
                 />
-              </div>
-              <div className="radio-buttons-group">
-                <FormControl>
-                  <FormLabel>PVM mokėtojas</FormLabel>
-                  <RadioGroup
-                    name="isSupplierVatPayer"
-                    value={values.isSupplierVatPayer}
-                    onChange={(event) => {
-                      setFieldValue(
-                        'isSupplierVatPayer',
-                        event.target.value === 'true' ? true : false
-                      );
-                    }}
-                  >
-                    <FormControlLabel
-                      value={true}
-                      control={<Radio />}
-                      label="Taip"
-                    />
-                    <FormControlLabel
-                      value={false}
-                      control={<Radio />}
-                      label="Ne"
-                    />
-                  </RadioGroup>
-                </FormControl>
-              </div>
-            </div>
-            <div className="totalSum">
-              <InputFormik
-                id={'totalSum'}
-                name={'totalSum'}
-                type={'number'}
-                placeholder={'Suma'}
-                label={'Suma'}
-                readOnly={true}
-              />
-            </div>
+              </Grid>
+              <Grid item>
+                <InputFormik
+                  id={'totalSum'}
+                  name={'totalSum'}
+                  type={'number'}
+                  placeholder={'Suma'}
+                  label={'Suma'}
+                  readOnly={true}
+                />
+              </Grid>
+            </Grid>
 
-            <div className="submit-button">
-              <Button variant="contained" color="success" type="submit">
-                Išrašyti sąskaitą
-              </Button>
-            </div>
-          </Form>
-        )}
-      </Formik>
-    </Container>
+            <Grid container justifyContent="flex-end" marginTop={2}>
+              <Grid item>
+                <Button
+                  variant="contained"
+                  color="success"
+                  type="submit"
+                  size="large"
+                >
+                  Išrašyti sąskaitą
+                </Button>
+              </Grid>
+            </Grid>
+          </Box>
+        </Form>
+      )}
+    </Formik>
   );
 };
 
 export default InvoiceForm;
-
-const Container = styled.div`
-  .invoice-form {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    border: 1px solid black;
-    padding: 30px 40px;
-  }
-  .title {
-    text-align: center;
-  }
-  .client-inputs {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-top: 40px;
-    align-items: center;
-  }
-  .supplier-inputs {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    margin-top: 20px;
-    align-items: center;
-  }
-  .select,
-  .vat,
-  .product,
-  .quantity,
-  .pricePerQuantity {
-    margin-left: 20px;
-  }
-  .client-radio-buttons {
-    display: flex;
-    flex-direction: row;
-    margin-left: 20px;
-  }
-  .radio-buttons-group {
-    display: flex;
-    flex-direction: column;
-    margin-left: 20px;
-  }
-  .radio-buttons {
-    display: flex;
-    flex-direction: row;
-  }
-  .totalSum {
-    display: flex;
-    justify-content: center;
-  }
-  .submit-button {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 40px;
-  }
-`;
