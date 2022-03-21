@@ -21,6 +21,7 @@ const ProductTable = (props: Props) => {
             <TableRow>
               <TableCell align="center">Produktas</TableCell>
               <TableCell align="center">Kiekis</TableCell>
+              <TableCell align="center">Vieneto kaina</TableCell>
               <TableCell align="center">PVM</TableCell>
               <TableCell align="center">Mokėtina suma</TableCell>
             </TableRow>
@@ -31,6 +32,9 @@ const ProductTable = (props: Props) => {
             >
               <TableCell align="center">{props.invoice.product}</TableCell>
               <TableCell align="center">{props.invoice.quantity}</TableCell>
+              <TableCell align="center">
+                {props.invoice.pricePerQuantity}
+              </TableCell>
               <TableCell align="center">
                 {props.invoice.vat + ' ' + '%'}
               </TableCell>

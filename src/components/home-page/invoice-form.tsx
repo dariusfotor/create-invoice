@@ -24,9 +24,22 @@ import FormLabel from '@mui/material/FormLabel';
 import { calculateTax } from '../utils/invoice-utils';
 import Divider from '@mui/material/Divider';
 
+const invoiceFormSchema = Yup.object().shape({
+  client: Yup.string().required('Įrašykite klientą'),
+  clientCountry: Yup.object().required('Pasirinkite valstybę'),
+  supplier: Yup.string().required('Įrašykite tiekėją'),
+  supplierCountry: Yup.object().required('Pasirinkite valstybę'),
+  product: Yup.string().required('Įrašykite produktą'),
+  quantity: Yup.number()
+    .not([0], 'Įrašykite kiekį')
+    .required('Įrašykite kiekį'),
+  pricePerQuantity: Yup.number()
+    .not([0], 'Įrašykite vieneto kainą')
+    .required('Įrašykite kainą'),
+});
+
 const InvoiceForm = () => {
   const [countries, setCountries] = useState([]);
-  const snackBarTime = 1500;
   const navigate = useNavigate();
   const { handleOpenSnackBar } = useContext(SnackbarContext);
 
@@ -49,56 +62,43 @@ const InvoiceForm = () => {
     getCountries();
   }, [getCountries]);
 
-  const invoiceFormSchema = Yup.object().shape({
-    client: Yup.string().required('Įrašykite klientą'),
-    clientCountry: Yup.object().required('Pasirinkite valstybę'),
-    supplier: Yup.string().required('Įrašykite tiekėją'),
-    supplierCountry: Yup.object().required('Pasirinkite valstybę'),
-    product: Yup.string().required('Įrašykite produktą'),
-    quantity: Yup.number()
-      .not([0], 'Įrašykite kiekį')
-      .required('Įrašykite kiekį'),
-    pricePerQuantity: Yup.number()
-      .not([0], 'Įrašykite kiekį')
-      .not([0])
-      .required('Įrašykite kainą'),
-  });
-
   const onSaveInv = async (invoice: CreateInvoiceType) => {
-    const clientCountry = invoice.clientCountry;
-    const supplierCountry = invoice.supplierCountry;
-    if (!clientCountry || !supplierCountry) {
-      return;
-    }
+    try {
+      const clientCountry = invoice.clientCountry;
+      const supplierCountry = invoice.supplierCountry;
+      if (!clientCountry || !supplierCountry) {
+        return;
+      }
 
-    const tax = await calculateTax({
-      ...invoice,
-      clientCountry,
-      supplierCountry,
-    });
-    let data2save: InvoiceType = {
-      id: Date.now(),
-      client: invoice.client,
-      clientCountry: clientCountry,
-      clientPerson: invoice.clientPerson,
-      isClientVatPayer: invoice.isClientVatPayer,
-      supplier: invoice.supplier,
-      supplierCountry: supplierCountry,
-      isSupplierVatPayer: invoice.isSupplierVatPayer,
-      product: invoice.product,
-      quantity: invoice.quantity,
-      pricePerQuantity: invoice.pricePerQuantity,
-      vat: tax?.vat || 0,
-      totalSum: invoice.totalSum,
-      tax: tax?.sumWithVat || 0,
-      notTouched: invoice.notTouched,
-      createdAt: invoice.createdAt,
-    };
-    await saveInvoiceApi(data2save);
-    handleOpenSnackBar('Įrašas sukurtas sėkmingai', 'success');
-    setTimeout(() => {
+      const tax = await calculateTax({
+        ...invoice,
+        clientCountry,
+        supplierCountry,
+      });
+      let data2save: InvoiceType = {
+        id: Date.now(),
+        client: invoice.client,
+        clientCountry: clientCountry,
+        clientPerson: invoice.clientPerson,
+        isClientVatPayer: invoice.isClientVatPayer,
+        supplier: invoice.supplier,
+        supplierCountry: supplierCountry,
+        isSupplierVatPayer: invoice.isSupplierVatPayer,
+        product: invoice.product,
+        quantity: invoice.quantity,
+        pricePerQuantity: invoice.pricePerQuantity,
+        vat: tax?.vat || 0,
+        totalSum: invoice.totalSum,
+        tax: tax?.sumWithVat || 0,
+        notTouched: invoice.notTouched,
+        createdAt: invoice.createdAt,
+      };
+      await saveInvoiceApi(data2save);
+      handleOpenSnackBar('Įrašas sukurtas sėkmingai', 'success');
       navigate(ROUTES.InvoicesPage);
-    }, snackBarTime);
+    } catch (error) {
+      handleOpenSnackBar('Klaida, bandykite dar kartą', 'error');
+    }
   };
 
   return (

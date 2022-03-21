@@ -1,173 +1,6 @@
 {
   "invoices": [
     {
-      "id": 1647886817209,
-      "client": "IBM",
-      "clientCountry": {
-        "name": "Lithuania",
-        "topLevelDomain": [
-          ".lt"
-        ],
-        "alpha2Code": "LT",
-        "alpha3Code": "LTU",
-        "callingCodes": [
-          "370"
-        ],
-        "capital": "Vilnius",
-        "altSpellings": [
-          "LT",
-          "Republic of Lithuania",
-          "Lietuvos Respublika"
-        ],
-        "subregion": "Northern Europe",
-        "region": "Europe",
-        "population": 2794700,
-        "latlng": [
-          56,
-          24
-        ],
-        "demonym": "Lithuanian",
-        "area": 65300,
-        "gini": 35.7,
-        "timezones": [
-          "UTC+02:00"
-        ],
-        "borders": [
-          "BLR",
-          "LVA",
-          "POL",
-          "RUS"
-        ],
-        "nativeName": "Lietuva",
-        "numericCode": "440",
-        "flags": {
-          "svg": "https://flagcdn.com/lt.svg",
-          "png": "https://flagcdn.com/w320/lt.png"
-        },
-        "currencies": [
-          {
-            "code": "EUR",
-            "name": "Euro",
-            "symbol": "€"
-          }
-        ],
-        "languages": [
-          {
-            "iso639_1": "lt",
-            "iso639_2": "lit",
-            "name": "Lithuanian",
-            "nativeName": "lietuvių kalba"
-          }
-        ],
-        "translations": {
-          "br": "Lituânia",
-          "pt": "Lituânia",
-          "nl": "Litouwen",
-          "hr": "Litva",
-          "fa": "لیتوانی",
-          "de": "Litauen",
-          "es": "Lituania",
-          "fr": "Lituanie",
-          "ja": "リトアニア",
-          "it": "Lituania",
-          "hu": "Litvánia"
-        },
-        "flag": "https://flagcdn.com/lt.svg",
-        "regionalBlocs": [
-          {
-            "acronym": "EU",
-            "name": "European Union"
-          }
-        ],
-        "cioc": "LTU",
-        "independent": true
-      },
-      "clientPerson": "physical",
-      "isClientVatPayer": false,
-      "supplier": "Microsoft",
-      "supplierCountry": {
-        "name": "Australia",
-        "topLevelDomain": [
-          ".au"
-        ],
-        "alpha2Code": "AU",
-        "alpha3Code": "AUS",
-        "callingCodes": [
-          "61"
-        ],
-        "capital": "Canberra",
-        "altSpellings": [
-          "AU"
-        ],
-        "subregion": "Australia and New Zealand",
-        "region": "Oceania",
-        "population": 25687041,
-        "latlng": [
-          -27,
-          133
-        ],
-        "demonym": "Australian",
-        "area": 7692024,
-        "gini": 34.4,
-        "timezones": [
-          "UTC+05:00",
-          "UTC+06:30",
-          "UTC+07:00",
-          "UTC+08:00",
-          "UTC+09:30",
-          "UTC+10:00",
-          "UTC+10:30",
-          "UTC+11:30"
-        ],
-        "nativeName": "Australia",
-        "numericCode": "036",
-        "flags": {
-          "svg": "https://flagcdn.com/au.svg",
-          "png": "https://flagcdn.com/w320/au.png"
-        },
-        "currencies": [
-          {
-            "code": "AUD",
-            "name": "Australian dollar",
-            "symbol": "$"
-          }
-        ],
-        "languages": [
-          {
-            "iso639_1": "en",
-            "iso639_2": "eng",
-            "name": "English",
-            "nativeName": "English"
-          }
-        ],
-        "translations": {
-          "br": "Austrália",
-          "pt": "Austrália",
-          "nl": "Australië",
-          "hr": "Australija",
-          "fa": "استرالیا",
-          "de": "Australien",
-          "es": "Australia",
-          "fr": "Australie",
-          "ja": "オーストラリア",
-          "it": "Australia",
-          "hu": "Ausztrália"
-        },
-        "flag": "https://flagcdn.com/au.svg",
-        "cioc": "AUS",
-        "independent": true
-      },
-      "isSupplierVatPayer": true,
-      "product": "Batai",
-      "quantity": 7,
-      "pricePerQuantity": "6",
-      "vat": 15,
-      "totalSum": 42,
-      "tax": 48.3,
-      "notTouched": false,
-      "createdAt": "2022/03/21"
-    },
-    {
       "id": 1647887077132,
       "client": "Samsung",
       "clientCountry": {
@@ -338,6 +171,192 @@
       "vat": 21,
       "totalSum": 39,
       "tax": 47.19,
+      "notTouched": false,
+      "createdAt": "2022/03/21"
+    },
+    {
+      "id": 1647888149434,
+      "client": "Samsung",
+      "clientCountry": {
+        "name": "Angola",
+        "topLevelDomain": [
+          ".ao"
+        ],
+        "alpha2Code": "AO",
+        "alpha3Code": "AGO",
+        "callingCodes": [
+          "244"
+        ],
+        "capital": "Luanda",
+        "altSpellings": [
+          "AO",
+          "República de Angola",
+          "ʁɛpublika de an'ɡɔla"
+        ],
+        "subregion": "Middle Africa",
+        "region": "Africa",
+        "population": 32866268,
+        "latlng": [
+          -12.5,
+          18.5
+        ],
+        "demonym": "Angolan",
+        "area": 1246700,
+        "gini": 51.3,
+        "timezones": [
+          "UTC+01:00"
+        ],
+        "borders": [
+          "COG",
+          "COD",
+          "ZMB",
+          "NAM"
+        ],
+        "nativeName": "Angola",
+        "numericCode": "024",
+        "flags": {
+          "svg": "https://flagcdn.com/ao.svg",
+          "png": "https://flagcdn.com/w320/ao.png"
+        },
+        "currencies": [
+          {
+            "code": "AOA",
+            "name": "Angolan kwanza",
+            "symbol": "Kz"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "pt",
+            "iso639_2": "por",
+            "name": "Portuguese",
+            "nativeName": "Português"
+          }
+        ],
+        "translations": {
+          "br": "Angola",
+          "pt": "Angola",
+          "nl": "Angola",
+          "hr": "Angola",
+          "fa": "آنگولا",
+          "de": "Angola",
+          "es": "Angola",
+          "fr": "Angola",
+          "ja": "アンゴラ",
+          "it": "Angola",
+          "hu": "Angola"
+        },
+        "flag": "https://flagcdn.com/ao.svg",
+        "regionalBlocs": [
+          {
+            "acronym": "AU",
+            "name": "African Union",
+            "otherNames": [
+              "الاتحاد الأفريقي",
+              "Union africaine",
+              "União Africana",
+              "Unión Africana",
+              "Umoja wa Afrika"
+            ]
+          }
+        ],
+        "cioc": "ANG",
+        "independent": true
+      },
+      "clientPerson": "juridical",
+      "isClientVatPayer": true,
+      "supplier": "Microsoft",
+      "supplierCountry": {
+        "name": "Austria",
+        "topLevelDomain": [
+          ".at"
+        ],
+        "alpha2Code": "AT",
+        "alpha3Code": "AUT",
+        "callingCodes": [
+          "43"
+        ],
+        "capital": "Vienna",
+        "altSpellings": [
+          "AT",
+          "Österreich",
+          "Osterreich",
+          "Oesterreich"
+        ],
+        "subregion": "Central Europe",
+        "region": "Europe",
+        "population": 8917205,
+        "latlng": [
+          47.33333333,
+          13.33333333
+        ],
+        "demonym": "Austrian",
+        "area": 83871,
+        "gini": 30.8,
+        "timezones": [
+          "UTC+01:00"
+        ],
+        "borders": [
+          "CZE",
+          "DEU",
+          "HUN",
+          "ITA",
+          "LIE",
+          "SVK",
+          "SVN",
+          "CHE"
+        ],
+        "nativeName": "Österreich",
+        "numericCode": "040",
+        "flags": {
+          "svg": "https://flagcdn.com/at.svg",
+          "png": "https://flagcdn.com/w320/at.png"
+        },
+        "currencies": [
+          {
+            "code": "EUR",
+            "name": "Euro",
+            "symbol": "€"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "de",
+            "iso639_2": "deu",
+            "name": "German",
+            "nativeName": "Deutsch"
+          }
+        ],
+        "translations": {
+          "br": "Áustria",
+          "pt": "Áustria",
+          "nl": "Oostenrijk",
+          "hr": "Austrija",
+          "fa": "اتریش",
+          "de": "Österreich",
+          "es": "Austria",
+          "fr": "Autriche",
+          "ja": "オーストリア",
+          "it": "Austria",
+          "hu": "Ausztria"
+        },
+        "flag": "https://flagcdn.com/at.svg",
+        "regionalBlocs": [
+          {
+            "acronym": "EU",
+            "name": "European Union"
+          }
+        ],
+        "cioc": "AUT",
+        "independent": true
+      },
+      "isSupplierVatPayer": true,
+      "product": "Batai",
+      "quantity": 5,
+      "pricePerQuantity": "11",
+      "vat": 0,
+      "totalSum": 55,
+      "tax": 55,
       "notTouched": false,
       "createdAt": "2022/03/21"
     }

@@ -25,7 +25,14 @@ const SelectField = (props: Props) => {
         ))}
       </TextField>
       {meta.error && meta.touched && (
-        <div style={{ color: 'red', fontSize: '15px', textAlign: 'center' }}>
+        <div
+          style={{
+            position: 'absolute',
+            color: 'red',
+            fontSize: '15px',
+            textAlign: 'center',
+          }}
+        >
           {meta.error}
         </div>
       )}

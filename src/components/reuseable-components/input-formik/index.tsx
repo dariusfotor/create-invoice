@@ -15,7 +15,7 @@ interface Props {
 const InputFormik = (props: Props) => {
   const [field, meta] = useField(props);
   return (
-    <Container>
+    <div>
       <TextField
         style={{ width: '150px' }}
         inputProps={{ readOnly: props.readOnly }}
@@ -23,16 +23,19 @@ const InputFormik = (props: Props) => {
         {...props}
       />
       {meta.error && meta.touched && (
-        <div style={{ color: 'red', fontSize: '15px', textAlign: 'center' }}>
+        <div
+          style={{
+            position: 'absolute',
+            color: 'red',
+            fontSize: '15px',
+            textAlign: 'center',
+          }}
+        >
           {meta.error}
         </div>
       )}
-    </Container>
+    </div>
   );
 };
 
 export default InputFormik;
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-`;

@@ -11,18 +11,16 @@ interface Props {
 
 const AlertSnackbar = (props: Props) => {
   return (
-    <div>
-      <Snackbar
-        open={props.open}
-        autoHideDuration={props.hideDurationTime || 3000}
-        onClose={props.handleClose}
-        message="Note archived"
-      >
-        <Alert severity={props.severityMode} sx={{ width: '100%' }}>
-          {props.message}
-        </Alert>
-      </Snackbar>
-    </div>
+    <Snackbar
+      open={props.open}
+      autoHideDuration={props.hideDurationTime || 3000}
+      onClose={props.handleClose}
+      message="Note archived"
+    >
+      <Alert severity={props.severityMode} sx={{ width: '100%' }}>
+        {props.message}
+      </Alert>
+    </Snackbar>
   );
 };
 

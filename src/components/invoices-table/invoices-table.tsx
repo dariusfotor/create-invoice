@@ -7,7 +7,7 @@ import {
 } from '../server/controller';
 import { SnackbarContext } from '../snackbar-context';
 import ModalConfirm from '../reuseable-components/modal-confirm';
-import { generatePath, useNavigate } from 'react-router-dom';
+import { generatePath } from 'react-router-dom';
 
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -29,8 +29,6 @@ const InvoicesTable = () => {
   const [rowId, setRowId] = React.useState<number>(0);
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     getInvoices();
