@@ -1,0 +1,345 @@
+{
+  "invoices": [
+    {
+      "id": 1647886817209,
+      "client": "IBM",
+      "clientCountry": {
+        "name": "Lithuania",
+        "topLevelDomain": [
+          ".lt"
+        ],
+        "alpha2Code": "LT",
+        "alpha3Code": "LTU",
+        "callingCodes": [
+          "370"
+        ],
+        "capital": "Vilnius",
+        "altSpellings": [
+          "LT",
+          "Republic of Lithuania",
+          "Lietuvos Respublika"
+        ],
+        "subregion": "Northern Europe",
+        "region": "Europe",
+        "population": 2794700,
+        "latlng": [
+          56,
+          24
+        ],
+        "demonym": "Lithuanian",
+        "area": 65300,
+        "gini": 35.7,
+        "timezones": [
+          "UTC+02:00"
+        ],
+        "borders": [
+          "BLR",
+          "LVA",
+          "POL",
+          "RUS"
+        ],
+        "nativeName": "Lietuva",
+        "numericCode": "440",
+        "flags": {
+          "svg": "https://flagcdn.com/lt.svg",
+          "png": "https://flagcdn.com/w320/lt.png"
+        },
+        "currencies": [
+          {
+            "code": "EUR",
+            "name": "Euro",
+            "symbol": "€"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "lt",
+            "iso639_2": "lit",
+            "name": "Lithuanian",
+            "nativeName": "lietuvių kalba"
+          }
+        ],
+        "translations": {
+          "br": "Lituânia",
+          "pt": "Lituânia",
+          "nl": "Litouwen",
+          "hr": "Litva",
+          "fa": "لیتوانی",
+          "de": "Litauen",
+          "es": "Lituania",
+          "fr": "Lituanie",
+          "ja": "リトアニア",
+          "it": "Lituania",
+          "hu": "Litvánia"
+        },
+        "flag": "https://flagcdn.com/lt.svg",
+        "regionalBlocs": [
+          {
+            "acronym": "EU",
+            "name": "European Union"
+          }
+        ],
+        "cioc": "LTU",
+        "independent": true
+      },
+      "clientPerson": "physical",
+      "isClientVatPayer": false,
+      "supplier": "Microsoft",
+      "supplierCountry": {
+        "name": "Australia",
+        "topLevelDomain": [
+          ".au"
+        ],
+        "alpha2Code": "AU",
+        "alpha3Code": "AUS",
+        "callingCodes": [
+          "61"
+        ],
+        "capital": "Canberra",
+        "altSpellings": [
+          "AU"
+        ],
+        "subregion": "Australia and New Zealand",
+        "region": "Oceania",
+        "population": 25687041,
+        "latlng": [
+          -27,
+          133
+        ],
+        "demonym": "Australian",
+        "area": 7692024,
+        "gini": 34.4,
+        "timezones": [
+          "UTC+05:00",
+          "UTC+06:30",
+          "UTC+07:00",
+          "UTC+08:00",
+          "UTC+09:30",
+          "UTC+10:00",
+          "UTC+10:30",
+          "UTC+11:30"
+        ],
+        "nativeName": "Australia",
+        "numericCode": "036",
+        "flags": {
+          "svg": "https://flagcdn.com/au.svg",
+          "png": "https://flagcdn.com/w320/au.png"
+        },
+        "currencies": [
+          {
+            "code": "AUD",
+            "name": "Australian dollar",
+            "symbol": "$"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "en",
+            "iso639_2": "eng",
+            "name": "English",
+            "nativeName": "English"
+          }
+        ],
+        "translations": {
+          "br": "Austrália",
+          "pt": "Austrália",
+          "nl": "Australië",
+          "hr": "Australija",
+          "fa": "استرالیا",
+          "de": "Australien",
+          "es": "Australia",
+          "fr": "Australie",
+          "ja": "オーストラリア",
+          "it": "Australia",
+          "hu": "Ausztrália"
+        },
+        "flag": "https://flagcdn.com/au.svg",
+        "cioc": "AUS",
+        "independent": true
+      },
+      "isSupplierVatPayer": true,
+      "product": "Batai",
+      "quantity": 7,
+      "pricePerQuantity": "6",
+      "vat": 15,
+      "totalSum": 42,
+      "tax": 48.3,
+      "notTouched": false,
+      "createdAt": "2022/03/21"
+    },
+    {
+      "id": 1647887077132,
+      "client": "Samsung",
+      "clientCountry": {
+        "name": "Latvia",
+        "topLevelDomain": [
+          ".lv"
+        ],
+        "alpha2Code": "LV",
+        "alpha3Code": "LVA",
+        "callingCodes": [
+          "371"
+        ],
+        "capital": "Riga",
+        "altSpellings": [
+          "LV",
+          "Republic of Latvia",
+          "Latvijas Republika"
+        ],
+        "subregion": "Northern Europe",
+        "region": "Europe",
+        "population": 1901548,
+        "latlng": [
+          57,
+          25
+        ],
+        "demonym": "Latvian",
+        "area": 64559,
+        "gini": 35.1,
+        "timezones": [
+          "UTC+02:00"
+        ],
+        "borders": [
+          "BLR",
+          "EST",
+          "LTU",
+          "RUS"
+        ],
+        "nativeName": "Latvija",
+        "numericCode": "428",
+        "flags": {
+          "svg": "https://flagcdn.com/lv.svg",
+          "png": "https://flagcdn.com/w320/lv.png"
+        },
+        "currencies": [
+          {
+            "code": "EUR",
+            "name": "Euro",
+            "symbol": "€"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "lv",
+            "iso639_2": "lav",
+            "name": "Latvian",
+            "nativeName": "latviešu valoda"
+          }
+        ],
+        "translations": {
+          "br": "Letônia",
+          "pt": "Letónia",
+          "nl": "Letland",
+          "hr": "Latvija",
+          "fa": "لتونی",
+          "de": "Lettland",
+          "es": "Letonia",
+          "fr": "Lettonie",
+          "ja": "ラトビア",
+          "it": "Lettonia",
+          "hu": "Lettország"
+        },
+        "flag": "https://flagcdn.com/lv.svg",
+        "regionalBlocs": [
+          {
+            "acronym": "EU",
+            "name": "European Union"
+          }
+        ],
+        "cioc": "LAT",
+        "independent": true
+      },
+      "clientPerson": "juridical",
+      "isClientVatPayer": false,
+      "supplier": "DHL",
+      "supplierCountry": {
+        "name": "Latvia",
+        "topLevelDomain": [
+          ".lv"
+        ],
+        "alpha2Code": "LV",
+        "alpha3Code": "LVA",
+        "callingCodes": [
+          "371"
+        ],
+        "capital": "Riga",
+        "altSpellings": [
+          "LV",
+          "Republic of Latvia",
+          "Latvijas Republika"
+        ],
+        "subregion": "Northern Europe",
+        "region": "Europe",
+        "population": 1901548,
+        "latlng": [
+          57,
+          25
+        ],
+        "demonym": "Latvian",
+        "area": 64559,
+        "gini": 35.1,
+        "timezones": [
+          "UTC+02:00"
+        ],
+        "borders": [
+          "BLR",
+          "EST",
+          "LTU",
+          "RUS"
+        ],
+        "nativeName": "Latvija",
+        "numericCode": "428",
+        "flags": {
+          "svg": "https://flagcdn.com/lv.svg",
+          "png": "https://flagcdn.com/w320/lv.png"
+        },
+        "currencies": [
+          {
+            "code": "EUR",
+            "name": "Euro",
+            "symbol": "€"
+          }
+        ],
+        "languages": [
+          {
+            "iso639_1": "lv",
+            "iso639_2": "lav",
+            "name": "Latvian",
+            "nativeName": "latviešu valoda"
+          }
+        ],
+        "translations": {
+          "br": "Letônia",
+          "pt": "Letónia",
+          "nl": "Letland",
+          "hr": "Latvija",
+          "fa": "لتونی",
+          "de": "Lettland",
+          "es": "Letonia",
+          "fr": "Lettonie",
+          "ja": "ラトビア",
+          "it": "Lettonia",
+          "hu": "Lettország"
+        },
+        "flag": "https://flagcdn.com/lv.svg",
+        "regionalBlocs": [
+          {
+            "acronym": "EU",
+            "name": "European Union"
+          }
+        ],
+        "cioc": "LAT",
+        "independent": true
+      },
+      "isSupplierVatPayer": true,
+      "product": "Batai",
+      "quantity": 3,
+      "pricePerQuantity": "13",
+      "vat": 21,
+      "totalSum": 39,
+      "tax": 47.19,
+      "notTouched": false,
+      "createdAt": "2022/03/21"
+    }
+  ]
+}
