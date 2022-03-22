@@ -1,4 +1,3 @@
-import React from 'react';
 import InvoiceTemplate from './invoice-template';
 
 const InvoiceTemplatePage = () => {

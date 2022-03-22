@@ -44,10 +44,9 @@ const InvoiceTemplate = () => {
             flexWrap: 'wrap',
             justifyContent: 'center',
             '& > :not(style)': {
-              m: 1,
-              width: 800,
-              height: '100%',
-              padding: '25px',
+              width: '100%',
+              padding: '20px',
+              margin: '20px',
             },
           }}
         >
@@ -61,13 +60,13 @@ const InvoiceTemplate = () => {
               <div className="supplier-column">
                 <div className="supplier-name">Tiekėjas:</div>
                 <div className="text">{invoice?.supplier}</div>
-                <div className="text">{invoice?.supplierCountry.name}</div>
+                <div className="text">{invoice?.supplierCountry}</div>
               </div>
 
               <div className="client-column">
                 <div className="client-name">Klientas:</div>
                 <div className="text">{invoice?.client}</div>
-                <div className="text">{invoice?.clientCountry.name}</div>
+                <div className="text">{invoice?.clientCountry}</div>
               </div>
             </div>
             <div className="product-table">

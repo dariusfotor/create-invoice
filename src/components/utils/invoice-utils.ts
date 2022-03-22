@@ -13,15 +13,19 @@ export const calculateTax = async (
   if (!invoice.isSupplierVatPayer) {
     return { sumWithVat: invoice.totalSum, vat: 0 };
   }
-  const isClientEuCountry = invoice.clientCountry.regionalBlocs.some(
-    (block) => block.acronym === RegionBlock.EU
-  );
+  const isClientEuCountry =
+    typeof invoice.clientCountry !== 'string' &&
+    invoice.clientCountry.regionalBlocs.some(
+      (block) => block.acronym === RegionBlock.EU
+    );
   //Supplier is VAT payer and client is over Europe Union VAT = 0%
   if (invoice.isSupplierVatPayer && !isClientEuCountry) {
     return { sumWithVat: invoice.totalSum, vat: 0 };
   }
   // Supplier is VAT payer. Client is not VAT payer lives in Europe Union and not the same country as supplier
   const isSameCountry =
+    typeof invoice.clientCountry !== 'string' &&
+    typeof invoice.supplierCountry !== 'string' &&
     invoice.clientCountry.name === invoice.supplierCountry.name;
   if (
     invoice.isSupplierVatPayer &&

@@ -2,29 +2,27 @@ import { Country } from './country';
 
 export interface InvoiceType extends CreateInvoiceType {
   id: number;
-  supplierCountry: Country;
-  clientCountry: Country;
-}
-
-export interface InvoiceFinancialData {
-  isSupplierVatPayer: boolean;
-  totalSum: number;
-  isClientVatPayer: boolean;
+  supplierCountry: Country | string;
+  clientCountry: Country | string;
 }
 
 export interface CreateInvoiceType extends InvoiceFinancialData {
   client: string;
-  clientCountry: Country | '';
+  clientCountry: Country | string | '';
   clientPerson: ClientPerson;
   product: string;
   quantity: number;
   pricePerQuantity: number;
   supplier: string;
-  supplierCountry: Country | '';
+  supplierCountry: Country | string | '';
   tax: number;
   vat: number;
-  notTouched: boolean;
   createdAt: string;
+}
+export interface InvoiceFinancialData {
+  isSupplierVatPayer: boolean;
+  totalSum: number;
+  isClientVatPayer: boolean;
 }
 
 export enum ClientPerson {

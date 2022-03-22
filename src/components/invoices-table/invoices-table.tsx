@@ -1,10 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import { ClientPerson, InvoiceType } from '../../models/invoice';
-import {
-  deleteInvoiceApi,
-  getInvoicesApi,
-  updateInvoiceApi,
-} from '../server/controller';
+import { deleteInvoiceApi, getInvoicesApi } from '../server/controller';
 import { SnackbarContext } from '../snackbar-context';
 import ModalConfirm from '../reuseable-components/modal-confirm';
 import { generatePath } from 'react-router-dom';
@@ -21,27 +17,33 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import ZoomInIcon from '@mui/icons-material/ZoomIn';
 import { ROUTES } from '../../routes';
 import styled from 'styled-components';
+import Loader from '../reuseable-components/loader/loader';
 
 const InvoicesTable = () => {
   const { handleOpenSnackBar } = React.useContext(SnackbarContext);
   const [invoices, setInvoices] = React.useState<InvoiceType[]>();
   const [openModal, setOpenModal] = React.useState(false);
   const [rowId, setRowId] = React.useState<number>(0);
+  const [isLoading, setIsLoading] = React.useState(false);
+
   const handleOpen = () => setOpenModal(true);
   const handleClose = () => setOpenModal(false);
 
-  useEffect(() => {
-    getInvoices();
-  }, []);
-
-  const getInvoices = async () => {
+  const getInvoices = useCallback(async () => {
     try {
+      setIsLoading(true);
       const response = await getInvoicesApi();
       setInvoices(response.data);
     } catch (error) {
       handleOpenSnackBar('Klaida, bandykite dar kartą', 'error');
+    } finally {
+      setIsLoading(false);
     }
-  };
+  }, [setInvoices, handleOpenSnackBar]);
+
+  useEffect(() => {
+    getInvoices();
+  }, [getInvoices]);
 
   const deleteInv = async (id: number) => {
     try {
@@ -54,35 +56,19 @@ const InvoicesTable = () => {
     }
   };
 
-  const updateInv = async (id: number, row: InvoiceType) => {
-    try {
-      await updateInvoiceApi(id, row);
-    } catch (error) {
-      handleOpenSnackBar('Klaida, bandykite dar kartą', 'error');
-    }
-  };
-
   const clickOnOpenModal = (id: number) => {
     setRowId(id);
     handleOpen();
   };
 
   const openInvoice = async (row: InvoiceType) => {
-    if (row.notTouched) {
-      row.notTouched = false;
-      await updateInv(row.id, row);
-      if (invoices?.length) {
-        const index = invoices.indexOf(row);
-        const newArr = invoices.splice(index, 1, row);
-        setInvoices(newArr);
-      }
-    }
     const url = generatePath(ROUTES.InvoiceTemplate, { id: row.id.toString() });
     window.open(url);
   };
 
   return (
     <Container>
+      {isLoading ? <Loader /> : ''}
       {invoices ? (
         <TableContainer component={Paper}>
           <Table sx={{ minWidth: 600 }} size="small" aria-label="a dense table">
@@ -110,11 +96,6 @@ const InvoicesTable = () => {
                   sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                   <TableCell>
-                    {row.notTouched ? (
-                      <span className="not-touched">Neperžiūrėta</span>
-                    ) : (
-                      ''
-                    )}
                     <Button variant="text" onClick={() => openInvoice(row)}>
                       <ZoomInIcon />
                     </Button>
@@ -123,14 +104,14 @@ const InvoicesTable = () => {
                   <TableCell align="center">{row.id}</TableCell>
                   <TableCell align="center">{row.supplier}</TableCell>
                   <TableCell align="center">
-                    {row.supplierCountry?.name}
+                    {row.supplierCountry.toString()}
                   </TableCell>
                   <TableCell align="center">
                     {row.isSupplierVatPayer ? 'Taip' : 'Ne'}
                   </TableCell>
                   <TableCell align="center">{row.client}</TableCell>
                   <TableCell align="center">
-                    {row.clientCountry?.name}
+                    {row.clientCountry.toString()}
                   </TableCell>
                   <TableCell align="center">
                     {row.clientPerson === ClientPerson.JURIDICAL
@@ -140,7 +121,7 @@ const InvoicesTable = () => {
                   <TableCell align="center">
                     {row.isClientVatPayer ? 'Taip' : 'Ne'}
                   </TableCell>
-                  <TableCell align="center">{row.vat + ' ' + '%'}</TableCell>
+                  <TableCell align="center">{row.vat + '%'}</TableCell>
                   <TableCell align="center">{row.tax}</TableCell>
                   <TableCell align="center">
                     <Button

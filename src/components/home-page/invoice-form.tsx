@@ -1,4 +1,4 @@
-import { useContext, useState, useEffect, useCallback } from 'react';
+import { useContext, useState, useEffect, useCallback, useMemo } from 'react';
 import { Form, Formik } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
@@ -23,11 +23,12 @@ import FormLabel from '@mui/material/FormLabel';
 import { calculateTax } from '../utils/invoice-utils';
 import Divider from '@mui/material/Divider';
 import { Box, Grid } from '@mui/material';
+
 const invoiceFormSchema = Yup.object().shape({
   client: Yup.string().required('Įrašykite klientą'),
-  clientCountry: Yup.object().required('Pasirinkite valstybę'),
+  clientCountry: Yup.string().required('Pasirinkite valstybę'),
   supplier: Yup.string().required('Įrašykite tiekėją'),
-  supplierCountry: Yup.object().required('Pasirinkite valstybę'),
+  supplierCountry: Yup.string().required('Pasirinkite valstybę'),
   product: Yup.string().required('Įrašykite produktą'),
   quantity: Yup.number()
     .not([0], 'Įrašykite kiekį')
@@ -38,24 +39,30 @@ const invoiceFormSchema = Yup.object().shape({
 });
 
 const InvoiceForm = () => {
-  const [countries, setCountries] = useState([]);
+  const [countries, setCountries] = useState<Country[]>([]);
   const navigate = useNavigate();
   const { handleOpenSnackBar } = useContext(SnackbarContext);
 
   const getCountries = useCallback(async () => {
     try {
       const response = await getCountriesApi();
-      const countriesNames = response.data.map((country: Country) => {
-        return {
-          label: country.name,
-          value: country,
-        };
-      });
-      setCountries(countriesNames);
+
+      setCountries(response.data);
     } catch (error) {
       handleOpenSnackBar('Klaida, bandykite dar kartą', 'error');
     }
   }, [setCountries, handleOpenSnackBar]);
+
+  const countryOptions = useMemo(
+    () =>
+      countries.map((country) => {
+        return {
+          label: country.name,
+          value: country.name,
+        };
+      }),
+    [countries]
+  );
 
   useEffect(() => {
     getCountries();
@@ -63,8 +70,12 @@ const InvoiceForm = () => {
 
   const onSaveInv = async (invoice: CreateInvoiceType) => {
     try {
-      const clientCountry = invoice.clientCountry;
-      const supplierCountry = invoice.supplierCountry;
+      const clientCountry = countries.find(
+        (c) => c.name === invoice.clientCountry
+      );
+      const supplierCountry = countries.find(
+        (c) => c.name === invoice.supplierCountry
+      );
       if (!clientCountry || !supplierCountry) {
         return;
       }
@@ -77,11 +88,11 @@ const InvoiceForm = () => {
       let data2save: InvoiceType = {
         id: Date.now(),
         client: invoice.client,
-        clientCountry: clientCountry,
+        clientCountry: clientCountry.name,
         clientPerson: invoice.clientPerson,
         isClientVatPayer: invoice.isClientVatPayer,
         supplier: invoice.supplier,
-        supplierCountry: supplierCountry,
+        supplierCountry: supplierCountry.name,
         isSupplierVatPayer: invoice.isSupplierVatPayer,
         product: invoice.product,
         quantity: invoice.quantity,
@@ -89,7 +100,6 @@ const InvoiceForm = () => {
         vat: tax?.vat || 0,
         totalSum: invoice.totalSum,
         tax: tax?.sumWithVat || 0,
-        notTouched: invoice.notTouched,
         createdAt: invoice.createdAt,
       };
       await saveInvoiceApi(data2save);
@@ -116,7 +126,6 @@ const InvoiceForm = () => {
         tax: 0,
         vat: 0,
         totalSum: 0,
-        notTouched: true,
         createdAt: new Date().toJSON().slice(0, 10).replace(/-/g, '/'),
       }}
       validationSchema={invoiceFormSchema}
@@ -146,7 +155,7 @@ const InvoiceForm = () => {
                   <div className="select">
                     <SelectField
                       label={'Valstybės'}
-                      data={countries}
+                      data={countryOptions}
                       name={'clientCountry'}
                     />
                   </div>
@@ -217,7 +226,7 @@ const InvoiceForm = () => {
                   <div className="select">
                     <SelectField
                       label={'Valstybės'}
-                      data={countries}
+                      data={countryOptions}
                       name={'supplierCountry'}
                     />
                   </div>
@@ -279,7 +288,7 @@ const InvoiceForm = () => {
                     setFieldValue('pricePerQuantity', event.target.value);
                     setFieldValue(
                       'totalSum',
-                      values.quantity * event.target.value
+                      (values.quantity * event.target.value).toFixed(2)
                     );
                   }}
                 />

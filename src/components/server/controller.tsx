@@ -13,10 +13,6 @@ export const saveInvoiceApi = async (invoice: InvoiceType) => {
   return axios.post('http://localhost:3004/invoices', invoice);
 };
 
-export const updateInvoiceApi = async (id: number, invoice: InvoiceType) => {
-  return axios.patch(`http://localhost:3004/invoices/${id}`, invoice);
-};
-
 export const deleteInvoiceApi = async (id: number) => {
   return await axios.delete(`http://localhost:3004/invoices/${id}`);
 };
